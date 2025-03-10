@@ -6,8 +6,6 @@ data=pickle.load(open("popular.pkl","rb"))
 similarity=pickle.load(open("similarity.pkl","rb"))
 pt=pickle.load(open("pt.pkl","rb"))
 books=pickle.load(open("books.pkl","rb"))
-
-
 st.set_page_config(page_title="Multi-Page App")
 # Create a navigation system
 page = st.sidebar.radio("Navigation", ["Home","Recommendation"])
