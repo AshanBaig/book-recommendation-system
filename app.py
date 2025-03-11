@@ -1,12 +1,13 @@
 import streamlit as st
 import pickle
 import numpy as np
-
-
+import pandas as pd
 data=pickle.load(open("popular.pkl","rb"))
 similarity=pickle.load(open("similarity.pkl","rb"))
 pt=pickle.load(open("pt.pkl","rb"))
 books=pickle.load(open("books.pkl","rb"))
+
+
 st.set_page_config(page_title="Multi-Page App")
 # Create a navigation system
 page = st.sidebar.radio("Navigation", ["Home","Recommendation"])
@@ -19,8 +20,10 @@ def home_page():
         cols = st.columns(pic_per_row)
         for j in range(pic_per_row):
             if ind<len(data):
-                cols[j].image(data["Image-URL-M"][ind], use_column_width=True)
-
+                try:
+                    cols[j].image(data["Image-URL-M"][ind], use_container_width=True)
+                except:
+                    pass
                 cols[j].markdown(f"""
                     **Title:** {data["Book-Title"][ind]}  
                     **Author:** {data["Book-Author"][ind]}  
@@ -47,8 +50,10 @@ def  recommend(book_name):
         cols = st.columns(pic_per_row)
         for j in range(pic_per_row):
             if ind<len(suggestion):
-                cols[j].image(suggestion[ind]["Image-URL-M"][0], use_column_width=True)
-
+                try:
+                    cols[j].image(suggestion[ind]["Image-URL-M"][0], use_container_width=True)
+                except:
+                    pass
                 cols[j].markdown(f"""
                     **Title:** {suggestion[ind]["Book-Title"][0]}
                     **Author:** {suggestion[ind]["Book-Author"][0]}
@@ -73,7 +78,3 @@ elif page == "Recommendation":
     st.title("Recommended Movies")
     options = st.selectbox("Select a Book", set(pt.index))
     recommend(options)
-
-
-# books.to_csv("books_compressed.csv.gz", compression="gzip", index=False)
-
