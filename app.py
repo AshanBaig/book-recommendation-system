@@ -1,14 +1,6 @@
 import streamlit as st
 import pickle
 import numpy as np
-import gdown
-
-import gdown
-
-# Direct file link
-url = "https://drive.google.com/uc?id=168UdjwaL6LdOzaIYVOH0YYD8UJQzfvcLg"
-gdown.download(url, "books.pkl", quiet=False)
-
 
 
 data=pickle.load(open("popular.pkl","rb"))
