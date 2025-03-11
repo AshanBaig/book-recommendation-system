@@ -1,7 +1,16 @@
 import streamlit as st
 import pickle
 import numpy as np
-import pandas as pd
+import gdown
+
+import gdown
+
+# Direct file link
+url = "https://drive.google.com/uc?id=168UdjwaL6LdOzaIYVOH0YYD8UJQzfvcLg"
+gdown.download(url, "books.pkl", quiet=False)
+
+
+
 data=pickle.load(open("popular.pkl","rb"))
 similarity=pickle.load(open("similarity.pkl","rb"))
 pt=pickle.load(open("pt.pkl","rb"))
@@ -72,4 +81,7 @@ elif page == "Recommendation":
     st.title("Recommended Movies")
     options = st.selectbox("Select a Book", set(pt.index))
     recommend(options)
+
+
+# books.to_csv("books_compressed.csv.gz", compression="gzip", index=False)
 
