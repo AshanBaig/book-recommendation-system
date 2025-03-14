@@ -75,6 +75,6 @@ if page == "Home":
 
 
 elif page == "Recommendation":
-    st.title("Recommended Movies")
+    st.title("Recommended Book")
     options = st.selectbox("Select a Book", set(pt.index))
     recommend(options)
